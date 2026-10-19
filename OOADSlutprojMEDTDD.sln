@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOADSlutprojMEDTDD", "OOADSlutprojMEDTDD\OOADSlutprojMEDTDD.csproj", "{662863EB-7DCA-4EDE-8274-551F0B32C052}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOADSlutprojMEDTDD.Tests", "OOADSlutprojMEDTDD.Tests\OOADSlutprojMEDTDD.Tests.csproj", "{181AB81B-1773-4A15-BECE-9C2B3DA98C98}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{662863EB-7DCA-4EDE-8274-551F0B32C052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{662863EB-7DCA-4EDE-8274-551F0B32C052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{662863EB-7DCA-4EDE-8274-551F0B32C052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{662863EB-7DCA-4EDE-8274-551F0B32C052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{181AB81B-1773-4A15-BECE-9C2B3DA98C98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{181AB81B-1773-4A15-BECE-9C2B3DA98C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{181AB81B-1773-4A15-BECE-9C2B3DA98C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{181AB81B-1773-4A15-BECE-9C2B3DA98C98}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
