@@ -7,6 +7,12 @@ public class Restaurant
     // Property: restaurangens namn
     public string Name { get; }
     
+    // Int, restaurant ID
+    public int Id { get; }
+    
+    // Decimal, minimum order amount, should reject if less than set amount
+    public decimal MinimumOrderAmount { get; }
+    
     // Privat lista med maträtter
     private List<Dish> _menu = new List<Dish>();
         
@@ -17,11 +23,18 @@ public class Restaurant
     {
         _menu.Add(dish);
     }
+
+    public bool MeetsMinimumOrder(decimal subtotal)
+    {
+        return subtotal >= MinimumOrderAmount;
+    }
     
 
     // Konstruktor: körs när någon skriver new Restaurant(...)
-    public Restaurant(string name)
+    public Restaurant( int id, string name, decimal minimumOrderAmount = 0m)
     {
         Name = name;
+        Id = id;
+        MinimumOrderAmount = minimumOrderAmount;
     }
 }

@@ -8,7 +8,7 @@ public sealed class RestaurangTest
     {
         string expectedName1 = "Pizzeria Talonisen";
 
-        var restaurant = new Restaurant(expectedName1);
+        var restaurant = new Restaurant(1, expectedName1);
 
         Assert.AreEqual(expectedName1, restaurant.Name);
     }
@@ -18,10 +18,10 @@ public sealed class RestaurangTest
         string expectedName2 = "Pizzeria Hedemora";
         string expectedName1 = "Pizzeria Talonisen";
 
-        var restaurant1 = new Restaurant(expectedName1);
+        var restaurant1 = new Restaurant(1, expectedName1);
 
         Assert.AreEqual(expectedName1, restaurant1.Name);
-        var restaurant2 = new Restaurant(expectedName2);
+        var restaurant2 = new Restaurant(3, expectedName2);
         Assert.AreEqual(expectedName2, restaurant2.Name);
     }
     [TestMethod]
@@ -30,7 +30,7 @@ public sealed class RestaurangTest
 
         
         // Skapa en restaurang och en maträtt
-        var restaurant = new Restaurant("Talonisens Spotify och Nattklub");
+        var restaurant = new Restaurant(4, "Talonisens Spotify och Nattklub");
         var dish = new Dish("Down in the Green", 100);
         
         // Lägg till ny maträtt i restaurangens meny
@@ -39,6 +39,17 @@ public sealed class RestaurangTest
         // Finns rätten i menyn?
         Assert.IsTrue(restaurant.Menu.Contains(dish));
 
+    }
+
+    [TestMethod]
+    [DataRow(99.99, false)]
+    [DataRow(100.00, true)]
+    [DataRow(100.01, true)]
+    public void MeetsMinimumOrder_ComparesWithMinimum(double subtotal, bool expected)
+    {
+        var restaurant = new Restaurant(1, "Pizzeria Talonisen", 100m);
+        bool result = restaurant.MeetsMinimumOrder((decimal)subtotal);
+        Assert.AreEqual(expected, result);
     }
     
 }
