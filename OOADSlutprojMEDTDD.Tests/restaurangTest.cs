@@ -3,8 +3,30 @@ namespace OOADSlutprojMEDTDD;
 [TestClass]
 public sealed class RestaurangTest
 {
+    [TestMethod]
+    public void Constructor_SetRestaurantId()
+    {
+        var restaurant = new Restaurant(1); 
+        Assert.AreEqual(1, restaurant.Id);
+    }
+        
+    [TestMethod]
+    public void Constructor_SetRestaurantName()
+    {        
+        var restaurant = new Restaurant(1,"Pizzeria Talonisen"); 
+        Assert.AreEqual("Pizzeria Talonisen", restaurant.Name);
+    }
+    
+    
+    [TestMethod]
+    public void Constructor_SetDescription()
+    {
+        var restaurant = new Restaurant(1, description: "Sug min kuk javenne"); 
+        Assert.AreEqual("Sug min kuk javenne", restaurant.Description);
+    }
+    
     [TestMethod] 
-    public void Constructor_SetsName1()
+    public void Constructor_SetsNameForOneRestaurant()
     {
         string expectedName1 = "Pizzeria Talonisen";
 
@@ -13,7 +35,7 @@ public sealed class RestaurangTest
         Assert.AreEqual(expectedName1, restaurant.Name);
     }
     [TestMethod] 
-    public void Constructor_SetsName2()
+    public void Constructor_SetsNameForTwoRestaurants()
     {
         string expectedName2 = "Pizzeria Hedemora";
         string expectedName1 = "Pizzeria Talonisen";

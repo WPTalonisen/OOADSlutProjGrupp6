@@ -5,28 +5,28 @@ public sealed class dishTest
 {
 
     [TestMethod]
-    public void Constructor_SetId()
+    public void Constructor_SetDishId()
     {
         var dish = new Dish(1); 
         Assert.AreEqual(1, dish.Id);
     }
         
     [TestMethod]
-    public void Constructor_SetName()
+    public void Constructor_SetDishName()
     {        
         var dish = new Dish(1, "Kattspya med bajs"); 
         Assert.AreEqual("Kattspya med bajs", dish.Name);
     }
     
     [TestMethod]
-    public void Constructor_SetPrice()
+    public void Constructor_SetDishPrice()
     {
         var dish = new Dish(1, price: 99m);
         Assert.AreEqual(99m, dish.Price);
     }
     
     [TestMethod]
-    public void Constructor_SetDescription()
+    public void Constructor_SetDishDescription()
     {
         var dish = new Dish(1, description: "Creamy and moist, ribbed for his pleasure");
         Assert.AreEqual("Creamy and moist, ribbed for his pleasure", dish.Description);

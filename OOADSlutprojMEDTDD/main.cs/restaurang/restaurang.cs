@@ -7,11 +7,14 @@ public class Restaurant
     // Property: restaurangens namn
     public string Name { get; }
     
-    // Int, restaurant ID
+    // Property: restaurant ID
     public int Id { get; }
     
-    // Decimal, minimum order amount, should reject if less than set amount
+    // Property: minimum order amount, should reject if less than set amount
     public decimal MinimumOrderAmount { get; }
+    
+    // Property: restaurant description
+    public string Description { get; }
     
     // Privat lista med maträtter
     private List<Dish> _menu = new List<Dish>();
@@ -31,10 +34,11 @@ public class Restaurant
     
 
     // Konstruktor: körs när någon skriver new Restaurant(...)
-    public Restaurant( int id, string name, decimal minimumOrderAmount = 0m)
+    public Restaurant( int id, string name = "", decimal minimumOrderAmount = 0m, string description = "")
     {
-        Name = name;
         Id = id;
+        Name = name;
         MinimumOrderAmount = minimumOrderAmount;
+        Description = description;
     }
 }

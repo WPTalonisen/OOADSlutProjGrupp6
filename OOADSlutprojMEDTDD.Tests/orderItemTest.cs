@@ -6,15 +6,21 @@ namespace OOADSlutprojMEDTDD
         [TestMethod]
         public void Subtotal_ReturnsPriceTimesQuantity()
         {
-            var dish = new Dish(70, "Aids med kolera");
+            var dish = new Dish(70, price: 10m);
 
         var item = new OrderItem(dish, 3);
             
             // Get Row Subtotal
             decimal subtotal = item.Subtotal;
             
-            // 100kr x 3 should be 300kr
-            Assert.AreEqual(100 * 3, subtotal);
+            // Subtotal should be 30
+            Assert.AreEqual(30, subtotal);
+        }
+
+        [TestMethod]
+        public void Subtotal_EqualToOrGreaterThanMinimumPrice()
+        {
+            
         }
     }
 }
