@@ -1,4 +1,3 @@
-/*
 namespace OOADSlutprojMEDTDD
 {
     [TestClass]
@@ -19,5 +18,3 @@ namespace OOADSlutprojMEDTDD
         }
     }
 }
-
-*/
