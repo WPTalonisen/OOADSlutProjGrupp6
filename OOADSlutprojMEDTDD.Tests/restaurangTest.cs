@@ -41,6 +41,7 @@ public sealed class RestaurangTest
 
     }
 
+    // Compares subtotal with minimum order amount
     [TestMethod]
     [DataRow(99.99, false)]
     [DataRow(100.00, true)]
