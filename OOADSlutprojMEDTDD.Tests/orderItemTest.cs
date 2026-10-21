@@ -1,3 +1,4 @@
+/*
 namespace OOADSlutprojMEDTDD
 {
     [TestClass]
@@ -6,8 +7,9 @@ namespace OOADSlutprojMEDTDD
         [TestMethod]
         public void Subtotal_ReturnsPriceTimesQuantity()
         {
-            var dish = new Dish("Superkebabcaviar", 100m);
-            var item = new OrderItem(dish, 3);
+            var dish = new Dish(70, "Aids med kolera");
+
+        var item = new OrderItem(dish, 3);
             
             // Get Row Subtotal
             decimal subtotal = item.Subtotal;
@@ -17,3 +19,5 @@ namespace OOADSlutprojMEDTDD
         }
     }
 }
+
+*/

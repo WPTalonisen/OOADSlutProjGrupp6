@@ -31,13 +31,13 @@ public sealed class RestaurangTest
         
         // Skapa en restaurang och en maträtt
         var restaurant = new Restaurant(4, "Talonisens Spotify och Nattklub");
-        var dish = new Dish("Down in the Green", 100);
+        var dish = new Dish(4, "Kattspya med bajs");
         
         // Lägg till ny maträtt i restaurangens meny
         restaurant.AddDish(dish);
         
         // Finns rätten i menyn?
-        Assert.IsTrue(restaurant.Menu.Contains(dish));
+        Assert.Contains(dish, restaurant.Menu);
 
     }
 
