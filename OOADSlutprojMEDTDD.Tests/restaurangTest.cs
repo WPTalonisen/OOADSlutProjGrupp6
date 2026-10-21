@@ -24,5 +24,21 @@ public sealed class RestaurangTest
         var restaurant2 = new Restaurant(expectedName2);
         Assert.AreEqual(expectedName2, restaurant2.Name);
     }
+    [TestMethod]
+    public void AddDishToMenu()
+    {
+
+        
+        // Skapa en restaurang och en maträtt
+        var restaurant = new Restaurant("Talonisens Spotify och Nattklub");
+        var dish = new Dish("Down in the Green", 100);
+        
+        // Lägg till ny maträtt i restaurangens meny
+        restaurant.AddDish(dish);
+        
+        // Finns rätten i menyn?
+        Assert.IsTrue(restaurant.Menu.Contains(dish));
+
+    }
     
 }
