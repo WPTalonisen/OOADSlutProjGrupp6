@@ -13,7 +13,7 @@ public class RestaurantManager
     }
 
     // Gets restaurand by Id, checks if key is in list and returns, else returns null
-    public Restaurant GetById(int id)
+    public Restaurant? GetById(int id)
     {
         if (_restaurants.ContainsKey(id))
         {
