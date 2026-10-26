@@ -46,4 +46,24 @@ public sealed class DiscountTest
         Assert.AreEqual(30m, result);
         
     }
+
+    // Checks if discount is valid, % is not > 0, 0< or negative
+    [TestMethod]
+    public void FixedAmountDiscount_NegativeAmount_ThrowsArgumentException()
+    {
+        Assert.ThrowsExactly<ArgumentException>(() => new FixedAmountDiscount(-50m));
+    }
+    
+    [TestMethod]
+    public void PercentageDiscount_NegativePercent_ThrowsArgumentException()
+    {
+        Assert.ThrowsExactly<ArgumentException>(() => new PercentageDiscount(-10m));
+    }
+
+    [TestMethod]
+    public void PercentageDiscount_OverHundredPercent_ThrowsArgumentException()
+    {
+        Assert.ThrowsExactly<ArgumentException>(() => new PercentageDiscount(150m));
+    }
+    
 }

@@ -2,7 +2,7 @@ namespace OOADSlutprojMEDTDD;
 
 public class DeliveryManager
 {
-    // Queue with Availabe deliveryPersons
+    // Queue with Available deliveryPersons
     private Queue<DeliveryPerson> _availableDeliveryPersons = new Queue<DeliveryPerson>();
 
     // Queue with waiting orders
@@ -30,6 +30,20 @@ public class DeliveryManager
         {
             _waitingOrders.Enqueue(order);
             return null;
+        }
+    }
+
+    public void CompleteDelivery(DeliveryPerson deliveryPerson)
+    {
+        deliveryPerson.CompleteDelivery();     
+        if (_waitingOrders.Count > 0)
+        {
+            Order nextOrder = _waitingOrders.Dequeue();
+            deliveryPerson.AssignOrder(nextOrder);
+        }
+        else
+        {
+            _availableDeliveryPersons.Enqueue(deliveryPerson);
         }
     }
 }

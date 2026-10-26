@@ -1,5 +1,10 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=86f682b1_002D310d_002D4a0f_002Db591_002D927d3b3b8c23/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestMethod1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1be77720_002D77fd_002D4d8c_002Db0dd_002Da032550b4240/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="AssignOrder_NoDeliveryPersonAvailable_OrderIsQueued" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryManagerTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=86f682b1_002D310d_002D4a0f_002Db591_002D927d3b3b8c23/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestMethod1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.RestaurangTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.dishTest&lt;/TestId&gt;&#xD;
@@ -10,5 +15,18 @@
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryPersonTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryManagerTest&lt;/TestId&gt;&#xD;
+  &lt;/TestAncestor&gt;&#xD;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d32504c3_002D2e62_002D4925_002D821c_002D557762172d2c/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="AssignOrder_TwoDeliveryPersons_FirstAddedGetsOrderkuk" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+  &lt;TestAncestor&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryManagerTest.CompletedDelivery_NoWaitingOrders_DeliveryPersonBecomesAvailable&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryManagerTest.CompletedDelivery_NoWaitingOrders_DeliveryPersonBackInQueue&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryManagerTest.CompletedDelivery_OrderWaiting_DeliveryPersonGetsWaitingOrder&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryManagerTest.CompletedDelivery_OrderWaiting_DeliveryPersonStaysBusy&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryManagerTest.AssignOrder_TwoDeliveryPersons_FirstAddedGetsOrder&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.PriceCalculatorTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest.FixedAmountDiscount_NegativeAmount_ThrowsArgumentException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest.PercentageDiscount_NegativePercent_ThrowsArgumentException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest.PercentageDiscount_OverHundredPercent_ThrowsArgumentException&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

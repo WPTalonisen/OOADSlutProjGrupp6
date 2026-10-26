@@ -3,10 +3,16 @@ namespace OOADSlutprojMEDTDD;
 // Fixed discount, t.ex. 50kr
 public class FixedAmountDiscount : IDiscountStrategy
 {
+    
     public decimal Amount { get; }
 
     public FixedAmountDiscount(decimal amount)
     {
+        if (amount <= 0)
+        {
+            throw new ArgumentException("Rabatten kan inte vara negativ", nameof(amount)); 
+        }
+
         Amount = amount;
     }
 
@@ -20,4 +26,6 @@ public class FixedAmountDiscount : IDiscountStrategy
         }
         return Amount;
     }
+    
+
 }
