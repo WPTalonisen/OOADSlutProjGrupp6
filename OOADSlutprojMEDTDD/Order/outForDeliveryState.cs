@@ -8,4 +8,9 @@ public class OutForDeliveryState : IOrderState
     {
         return new DeliveredState();
     }
+
+    public IOrderState Cancel()
+    {
+        throw new InvalidOperationException("The order can not be cancelled in this state.");
+    }
 }

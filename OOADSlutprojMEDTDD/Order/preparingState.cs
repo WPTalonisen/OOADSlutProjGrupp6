@@ -8,4 +8,9 @@ public class PreparingState : IOrderState
     {
         return new OutForDeliveryState();
     }
+
+    public IOrderState Cancel()
+    {
+        return new CancelledState();
+    }
 }

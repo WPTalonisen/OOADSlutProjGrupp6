@@ -34,4 +34,9 @@ public class Order
     {
         State = State.Next();
     }
+
+    public void Cancel()
+    {
+        State = State.Cancel();
+    }
 }

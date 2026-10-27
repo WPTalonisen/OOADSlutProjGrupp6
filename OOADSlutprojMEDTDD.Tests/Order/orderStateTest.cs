@@ -44,4 +44,57 @@ public class OrderStateTest
 
         Assert.IsInstanceOfType<DeliveredState>(order.State);
     }
+    
+    // Cancel Order
+    [TestMethod]
+    public void Cancel_FromReceived_BecomesCancelled()
+    {
+        var order = new Order();
+
+        order.Cancel();
+
+        Assert.IsInstanceOfType<CancelledState>(order.State);
+    }
+
+    [TestMethod]
+    public void Cancel_FromPreparing_BecomesCancelled()
+    {
+        var order = new Order();
+        order.AdvanceStatus(); // Received -> Preparing
+
+        order.Cancel();
+        
+        Assert.IsInstanceOfType<CancelledState>(order.State);
+    }
+    
+    [TestMethod]
+    public void Cancel_FromOutForDelivery_ThrowsInvalidOperationException()
+    {
+        var order = new Order();
+
+        order.AdvanceStatus(); // Received -> Preparing
+        order.AdvanceStatus(); // Preparing -> Delivering
+        
+        Assert.ThrowsExactly<InvalidOperationException>(() => order.Cancel());
+    }
+    
+    [TestMethod]
+    public void Cancel_FromDelivered_ThrowsInvalidOperationException()
+    {
+        var order = new Order();
+        order.AdvanceStatus(); // Received -> Preparing
+        order.AdvanceStatus(); // Preparing -> Delivering
+        order.AdvanceStatus(); // Delivering -> Delivered
+
+        Assert.ThrowsExactly<InvalidOperationException>(() => order.Cancel());
+    }
+
+    [TestMethod]
+    public void AdvanceStatus_FromDelivered_ThrowsInvalidOperationException()
+    {
+        var order = new Order();
+        order.Cancel();
+        
+        Assert.ThrowsExactly<InvalidOperationException>(() => order.AdvanceStatus());
+    }
 }

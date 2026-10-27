@@ -8,4 +8,9 @@ public class DeliveredState : IOrderState
     {
         throw new InvalidOperationException("A delivered order can not change status");
     }
+    
+    public IOrderState Cancel()
+    {
+        throw new InvalidOperationException("The order can not be cancelled in this state.");
+    }
 }
