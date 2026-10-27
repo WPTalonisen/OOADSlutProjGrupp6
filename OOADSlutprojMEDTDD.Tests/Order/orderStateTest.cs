@@ -29,8 +29,8 @@ public class OrderStateTest
     public void AdvanceStatus_FromPreparing_BecomesOutForDelivery()
     {
         var order = new Order();
-        order.AdvanceStatus(); // -> Received Preparing
-        order.AdvanceStatus(); // -> Preparing -> Delivering
+        order.AdvanceStatus(); // Received -> Preparing
+        order.AdvanceStatus(); // Preparing -> Delivering
         Assert.IsInstanceOfType<OutForDeliveryState>(order.State);
     }
     
@@ -38,9 +38,9 @@ public class OrderStateTest
     public void AdvanceStatus_FromPreparing_BecomesDelivered()
     {
         var order = new Order();
-        order.AdvanceStatus(); // -> Received Preparing
-        order.AdvanceStatus(); // -> Preparing -> Delivering
-        order.AdvanceStatus(); // -> Delivering -> Delivered
+        order.AdvanceStatus(); // Received -> Preparing
+        order.AdvanceStatus(); // Preparing -> Delivering
+        order.AdvanceStatus(); // Delivering -> Delivered
 
         Assert.IsInstanceOfType<DeliveredState>(order.State);
     }
