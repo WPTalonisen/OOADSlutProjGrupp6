@@ -4,9 +4,9 @@ namespace OOADSlutprojMEDTDD;
 public sealed class DeliveryTest
 {
     [TestMethod] 
-    public void TestMethod1()
+    public void Constructor_getID()
     {
-    
-    }
+        
+}
     
 }
