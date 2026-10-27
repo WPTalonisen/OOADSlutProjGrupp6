@@ -28,5 +28,6 @@
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest.FixedAmountDiscount_NegativeAmount_ThrowsArgumentException&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest.PercentageDiscount_NegativePercent_ThrowsArgumentException&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest.PercentageDiscount_OverHundredPercent_ThrowsArgumentException&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderStateTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

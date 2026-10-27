@@ -27,4 +27,11 @@ public class Order
             return sum;
         }
     }
+
+    public IOrderState State { get; private set; } = new ReceivedState();
+    
+    public void AdvanceStatus()
+    {
+        State = State.Next();
+    }
 }

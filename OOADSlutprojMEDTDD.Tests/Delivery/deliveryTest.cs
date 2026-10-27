@@ -1,7 +1,7 @@
 namespace OOADSlutprojMEDTDD;
 
 [TestClass]
-public sealed class deliveryTest
+public sealed class DeliveryTest
 {
     [TestMethod] 
     public void TestMethod1()
