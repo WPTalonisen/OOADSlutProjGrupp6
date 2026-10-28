@@ -10,7 +10,7 @@ public class OrderStateTest
     [TestMethod]
     public void NewOrder_StateIsReceived()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
 
         Assert.IsInstanceOfType<ReceivedState>(order.State);
     }
@@ -18,7 +18,7 @@ public class OrderStateTest
     [TestMethod]
     public void AdvanceStatus_FromReceived_BecomesPreparing()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
 
         order.AdvanceStatus();
 
@@ -28,7 +28,7 @@ public class OrderStateTest
     [TestMethod]
     public void AdvanceStatus_FromPreparing_BecomesOutForDelivery()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.AdvanceStatus(); // Received -> Preparing
         order.AdvanceStatus(); // Preparing -> Delivering
         Assert.IsInstanceOfType<OutForDeliveryState>(order.State);
@@ -37,7 +37,7 @@ public class OrderStateTest
     [TestMethod]
     public void AdvanceStatus_FromPreparing_BecomesDelivered()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.AdvanceStatus(); // Received -> Preparing
         order.AdvanceStatus(); // Preparing -> Delivering
         order.AdvanceStatus(); // Delivering -> Delivered
@@ -49,7 +49,7 @@ public class OrderStateTest
     [TestMethod]
     public void Cancel_FromReceived_BecomesCancelled()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
 
         order.Cancel();
 
@@ -59,7 +59,7 @@ public class OrderStateTest
     [TestMethod]
     public void Cancel_FromPreparing_BecomesCancelled()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.AdvanceStatus(); // Received -> Preparing
 
         order.Cancel();
@@ -70,7 +70,7 @@ public class OrderStateTest
     [TestMethod]
     public void Cancel_FromOutForDelivery_ThrowsInvalidOperationException()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
 
         order.AdvanceStatus(); // Received -> Preparing
         order.AdvanceStatus(); // Preparing -> Delivering
@@ -81,7 +81,7 @@ public class OrderStateTest
     [TestMethod]
     public void Cancel_FromDelivered_ThrowsInvalidOperationException()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.AdvanceStatus(); // Received -> Preparing
         order.AdvanceStatus(); // Preparing -> Delivering
         order.AdvanceStatus(); // Delivering -> Delivered
@@ -92,7 +92,7 @@ public class OrderStateTest
     [TestMethod]
     public void AdvanceStatus_FromDelivered_ThrowsInvalidOperationException()
     {
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.Cancel();
         
         Assert.ThrowsExactly<InvalidOperationException>(() => order.AdvanceStatus());

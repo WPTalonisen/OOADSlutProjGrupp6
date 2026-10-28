@@ -37,7 +37,7 @@ public sealed class DeliveryPersonTest
     public void AssignOrder_DeliveryPersonBecomesHasOrder()
     {
         var deliveryPerson = new  DeliveryPerson(1,"Big Dave");
-        var order = new Order();
+        var order = TestData.CreateOrder();
         
         deliveryPerson.AssignOrder(order);
         
@@ -49,7 +49,7 @@ public sealed class DeliveryPersonTest
     {
         
         var deliveryPerson = new  DeliveryPerson(1,"Big Dave");
-        var order = new Order();
+        var order = TestData.CreateOrder();
         
         deliveryPerson.AssignOrder(order);
         
@@ -60,7 +60,7 @@ public sealed class DeliveryPersonTest
     public void CompleteDelivery_CurrentStatus()
     {
         var deliveryPerson = new  DeliveryPerson(1,"Big Dave");
-        var order = new Order();
+        var order = TestData.CreateOrder();
         deliveryPerson.AssignOrder(order);
         Assert.AreEqual(DeliveryStatus.Busy, deliveryPerson.Status);
 
@@ -73,7 +73,7 @@ public sealed class DeliveryPersonTest
     public void CompleteDelivery_OrderStatus()
     {
         var deliveryPerson = new  DeliveryPerson(1,"Big Dave");
-        var order = new Order();
+        var order = TestData.CreateOrder();
         deliveryPerson.AssignOrder(order);
         Assert.AreEqual(order, deliveryPerson.CurrentOrder);
 

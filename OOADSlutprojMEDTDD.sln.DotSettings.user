@@ -30,5 +30,15 @@
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest.PercentageDiscount_OverHundredPercent_ThrowsArgumentException&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderStateTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderServiceTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderFactoryTest.CreateOrder_FirstOrder_GetsId1&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderFactoryTest.CreateOrder_SecondOrder_GetsId2&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderFactoryTest.CreateOrder_SetsRestaurant&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderObserverTest.AdvanceStatus_WithObserver_ObserverSeesNewState&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderObserverTest.AdvanceStatus_WithObserver_ObserverIsNotified&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderObserverTest.Unsubscribe_ObserverIsNotified&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderObserverTest.AdvanceStatus_TwoObservers_SecondIsNotified&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderObserverTest.Cancel_WithObserver_ObserverIsNotified&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderObserverTest.Unsubscribe_ObserverIsNotNotified&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

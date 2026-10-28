@@ -13,7 +13,7 @@ public sealed class DeliveryManagerTest
 
         manager.AddDeliveryPerson(deliveryPerson);
 
-        DeliveryPerson? assigned = manager.AssignOrder(new Order());
+        DeliveryPerson? assigned = manager.AssignOrder(TestData.CreateOrder());
 
         Assert.AreSame(deliveryPerson, assigned);
     }
@@ -26,7 +26,7 @@ public sealed class DeliveryManagerTest
 
         manager.AddDeliveryPerson(deliveryPerson);
 
-        manager.AssignOrder(new Order());
+        manager.AssignOrder(TestData.CreateOrder());
 
         Assert.AreEqual(DeliveryStatus.Busy, deliveryPerson.Status);
     }
@@ -37,7 +37,7 @@ public sealed class DeliveryManagerTest
         var manager = new DeliveryManager();
         manager.AddDeliveryPerson(new DeliveryPerson(1, "Big Dave"));
 
-        manager.AssignOrder(new Order());
+        manager.AssignOrder(TestData.CreateOrder());
 
         Assert.AreEqual(0, manager.AvailableCount);
     }
@@ -49,7 +49,7 @@ public sealed class DeliveryManagerTest
     {
         var manager = new DeliveryManager();
 
-        DeliveryPerson? assigned = manager.AssignOrder(new Order());
+        DeliveryPerson? assigned = manager.AssignOrder(TestData.CreateOrder());
 
         Assert.IsNull(assigned);
     }
@@ -59,7 +59,7 @@ public sealed class DeliveryManagerTest
     {
         var manager = new DeliveryManager();
         
-        manager.AssignOrder(new Order());
+        manager.AssignOrder(TestData.CreateOrder());
 
         Assert.AreEqual(1, manager.WaitingCount);
     }
@@ -78,7 +78,7 @@ public sealed class DeliveryManagerTest
         manager.AddDeliveryPerson(skinnyJeansAdam);
         
 
-        DeliveryPerson? assigned = manager.AssignOrder(new Order());
+        DeliveryPerson? assigned = manager.AssignOrder(TestData.CreateOrder());
 
         Assert.AreSame(bigDave, assigned);
 
@@ -96,7 +96,7 @@ public sealed class DeliveryManagerTest
         manager.AddDeliveryPerson(bigDave);
         
 
-        DeliveryPerson? assigned = manager.AssignOrder(new Order());
+        DeliveryPerson? assigned = manager.AssignOrder(TestData.CreateOrder());
 
        
         Assert.AreEqual(skinnyJeansAdam, assigned);
@@ -117,7 +117,7 @@ public sealed class DeliveryManagerTest
         manager.AddDeliveryPerson(bigDave);
         manager.AddDeliveryPerson(skinnyJeansAdam);
         
-        manager.AssignOrder(new Order());
+        manager.AssignOrder(TestData.CreateOrder());
         
         Assert.AreEqual(DeliveryStatus.Available, skinnyJeansAdam.Status);
     }
@@ -130,7 +130,7 @@ public sealed class DeliveryManagerTest
         var manager = new DeliveryManager();
         var bigDave = new DeliveryPerson(1, "Big Dave");
         manager.AddDeliveryPerson(bigDave);
-        manager.AssignOrder(new Order());
+        manager.AssignOrder(TestData.CreateOrder());
 
         manager.CompleteDelivery(bigDave);
 
@@ -144,7 +144,7 @@ public sealed class DeliveryManagerTest
         var bigDave = new DeliveryPerson(1, "Big Dave");
         
         manager.AddDeliveryPerson(bigDave);
-        manager.AssignOrder(new Order());
+        manager.AssignOrder(TestData.CreateOrder());
 
         Assert.AreEqual(DeliveryStatus.Busy, bigDave.Status);
 
@@ -163,11 +163,11 @@ public sealed class DeliveryManagerTest
         var manager = new DeliveryManager();
         var bigDave = new DeliveryPerson(1, "Big Dave");
         manager.AddDeliveryPerson(bigDave);
-        manager.AssignOrder(new Order());
+        manager.AssignOrder(TestData.CreateOrder());
 
         Assert.AreEqual(DeliveryStatus.Busy, bigDave.Status);
 
-        var waitingOrder = new Order();
+        var waitingOrder = TestData.CreateOrder();
         manager.AssignOrder(waitingOrder);
 
         Assert.AreEqual(1, manager.WaitingCount);
@@ -184,8 +184,8 @@ public sealed class DeliveryManagerTest
         var manager = new DeliveryManager();
         var bigDave = new DeliveryPerson(1, "Big Dave");
         manager.AddDeliveryPerson(bigDave);
-        manager.AssignOrder(new Order());
-        manager.AssignOrder(new Order());
+        manager.AssignOrder(TestData.CreateOrder());
+        manager.AssignOrder(TestData.CreateOrder());
         
         manager.CompleteDelivery(bigDave);
         

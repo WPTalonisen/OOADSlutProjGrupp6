@@ -9,7 +9,7 @@ public class OrderServiceTest
     {
         var service = new OrderService();
         var restaurant = new Restaurant(1, "Pizzeria Super Coder Extraordinaire", 100m);
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.AddItem(new Dish(1, "En riktigt bra TDD", 100m), 2);
         
         bool accepted = service.PlaceOrder(order, restaurant);
@@ -22,7 +22,7 @@ public class OrderServiceTest
     {
         var service = new OrderService();
         var restaurant = new Restaurant(1, "Pizzeria Super Coder Extraordinaire", 100m);
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.AddItem(new Dish(1, "En riktigt bra TDD", 100m), 2);
         
         service.PlaceOrder(order, restaurant);
@@ -36,7 +36,7 @@ public class OrderServiceTest
     {
         var service = new OrderService();
         var restaurant = new Restaurant(1, "Pizzeria Super Coder Extraordinaire", 1000m);
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.AddItem(new Dish(1, "En riktigt bra TDD", 100m), 2);
         
         service.PlaceOrder(order, restaurant);
@@ -51,7 +51,7 @@ public class OrderServiceTest
     {
         var service = new OrderService();
         var restaurant = new Restaurant(1, "Pizzeria Super Coder Extraordinaire", 112345678m);
-        var order = new Order();
+        var order = TestData.CreateOrder();
         order.AddItem(new Dish(1, "En riktigt bra TDD", 100m), 2);
         
         service.PlaceOrder(order, restaurant);
