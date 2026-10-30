@@ -48,8 +48,9 @@ public class OrderMenu
             }
 
             Console.WriteLine($"Subtotal so far: {order.Subtotal} kr");
+            Console.WriteLine("0. Go to checkout");
             
-            int dishNumber = ConsoleInput.ReadInt("Choose dish number: ");
+            int dishNumber = ConsoleInput.ReadInt("Choose dish number (0 = go to checkout): ");
             if (dishNumber == 0)
             {
                 break;
@@ -92,22 +93,125 @@ public class OrderMenu
         };
 
         decimal total = _priceCalculator.CalculateTotal(order, discount);
-        Console.WriteLine($"To pay: {total} kr. (inlcuding {_priceCalculator.DeliveryFee} kr delivery fee)");
+        order.SetPrice(_priceCalculator.DeliveryFee, total);
+        Console.WriteLine($"To pay: {total} kr. (including {_priceCalculator.DeliveryFee} kr delivery fee)");
         
-        // Status and delivery
+        
         order.Subscribe(_notifier);
-        order.AdvanceStatus();
-        order.AdvanceStatus();
+        Console.WriteLine("1. Pay");
+        Console.WriteLine("0. Cancel order");
 
-        DeliveryPerson? bud = _deliveryManager.AssignOrder(order);
-        if (bud is null)
+        if (ConsoleInput.ReadInt("Choose: ") != 1)
         {
-            Console.WriteLine("No bud available, order is placed in waiting queue.");
+            order.Cancel();
+            Console.WriteLine("Your order was cancelled.");
             return;
         }
 
-        Console.WriteLine($"{bud.Name} is delivering your order #{order.Id}");
-        order.AdvanceStatus();
-        _deliveryManager.CompleteDelivery(bud);
+        Console.WriteLine("Payment received. Thank you!");
+        order.MarkAsPaid();
+
+        SimulateWait("Sending the order to the restaurant");
+        order.AdvanceStatus();          // → Preparing
+        Console.WriteLine("Use menu 3 to deliver or 4 to cancel.");
+    }
+
+    // Moves an order out for delivery, gives it to a courier and delivers it
+    public void DeliverOrder()
+    {
+        Order? order = _orderService.GetOrderById(ConsoleInput.ReadInt("Order number to deliver: "));
+        if (order is null)
+        {
+            Console.WriteLine("Order not found.");
+            return;
+        }
+
+        try
+        {
+            SimulateWait("The kitchen is finishing your food");
+            order.AdvanceStatus();          // → Out for delivery
+        }
+        catch (InvalidOperationException e)
+        {
+            Console.WriteLine(e.Message);
+            return;
+        }
+
+        DeliveryPerson? courier = _deliveryManager.AssignOrder(order);
+        if (courier is null)
+        {
+            Console.WriteLine("No courier available, the order is waiting in the queue.");
+            return;
+        }
+
+        Console.WriteLine($"{courier.Name} is delivering order #{order.Id}");
+        SimulateWait("The courier is on the way");
+        order.AdvanceStatus();              // → Delivered
+        _deliveryManager.CompleteDelivery(courier);
+    }
+
+    // Cancels an order – the order's state decides if it is allowed
+    public void CancelOrder()
+    {
+        Order? order = _orderService.GetOrderById(ConsoleInput.ReadInt("Order number to cancel: "));
+        if (order is null)
+        {
+            Console.WriteLine("Order not found.");
+            return;
+        }
+
+        try
+        {
+            order.Cancel();
+        }
+        catch (InvalidOperationException e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    // Shows every accepted order with dishes and prices
+    public void ShowHistory()
+    {
+        Console.WriteLine();
+
+        if (_orderService.OrderHistory.Count == 0)
+        {
+            Console.WriteLine("No order history available");
+            return;
+        }
+
+        foreach (var order in _orderService.OrderHistory)
+        {
+            Console.WriteLine($"Order #{order.Id} - {order.Restaurant.Name} - {order.State.Name}");
+
+            foreach (var item in order.Items)
+            {
+                Console.WriteLine($"   {item.Quantity} x {item.Dish.Name} - {item.Subtotal} kr");
+            }
+
+            Console.WriteLine($"   Subtotal: {order.Subtotal} kr");
+            Console.WriteLine($"   Delivery fee: {order.DeliveryFee} kr");
+            if (order.State is CancelledState && order.IsPaid)
+            {
+                Console.WriteLine($"   Refunded: {order.TotalPrice} kr");
+            }
+            else if (order.State is CancelledState)
+            {
+                Console.WriteLine("   Not paid");
+            }
+            else
+            {
+                Console.WriteLine($"   Total: {order.TotalPrice} kr");
+            }
+        }
+    }
+
+    // Simulates time passing: waits a random time between 5 and 10 seconds
+    private static void SimulateWait(string message)
+    {
+        int seconds = Random.Shared.Next(5, 11);
+        Console.WriteLine($"{message} ({seconds} s)...");
+        Thread.Sleep(seconds * 1000);
     }
 }

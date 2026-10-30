@@ -16,4 +16,16 @@ public class OrderService
         _orderHistory.Add(order);
         return true;
     }
+    
+    public Order? GetOrderById(int id)
+    {
+        foreach (var order in _orderHistory)
+        {
+            if (order.Id == id)
+            {
+                return order;
+            }
+        }
+        return null;
+    }
 }

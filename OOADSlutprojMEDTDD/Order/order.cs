@@ -12,6 +12,24 @@ public class Order
         Id = id;
         Restaurant = restaurant;
     }
+    
+    public decimal DeliveryFee { get; private set; }
+    public decimal TotalPrice { get; private set; }
+    
+    public void SetPrice(decimal deliveryFee, decimal totalPrice)
+    {
+        DeliveryFee = deliveryFee;
+        TotalPrice = totalPrice;
+    }
+    
+    // True when the customer has paid
+    public bool IsPaid { get; private set; }
+
+    // Called when the payment is received
+    public void MarkAsPaid()
+    {
+        IsPaid = true;
+    }
 
     // Private list with OrderItem
     private List<OrderItem> _items = new List<OrderItem>();

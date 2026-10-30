@@ -44,6 +44,8 @@ public static class Program
             Console.WriteLine("Est. 2026");
             Console.WriteLine("1. New Order");
             Console.WriteLine("2. Show Order History");
+            Console.WriteLine("3. Deliver Order");
+            Console.WriteLine("4. Cancel Order");
             Console.WriteLine("0. Exit");
             
             
@@ -56,7 +58,13 @@ public static class Program
                     orderMenu.CreateOrder();
                     break;
                 case 2:
-                    Console.WriteLine("TBA");
+                    orderMenu.ShowHistory();
+                    break;
+                case 3:
+                    orderMenu.DeliverOrder();
+                    break;
+                case 4:
+                    orderMenu.CancelOrder();
                     break;
                 case 0:
                     running = false;

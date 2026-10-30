@@ -34,4 +34,42 @@ public sealed class OrderTest
 
         Assert.AreEqual(restaurant, order.Restaurant);
     }
+    
+    [TestMethod]
+    public void SetPrice_SetsDeliveryFee()
+    {
+        var order = TestData.CreateOrder();
+
+        order.SetPrice(50m, 230m);
+
+        Assert.AreEqual(50m, order.DeliveryFee);
+    }
+    
+    [TestMethod]
+    public void SetPrice_SetsTotalPrice()
+    {
+        var order = TestData.CreateOrder();
+
+        order.SetPrice(50m, 230m);
+
+        Assert.AreEqual(230m, order.TotalPrice);
+    }
+    
+    [TestMethod]
+    public void NewOrder_IsNotPaid()
+    {
+        var order = TestData.CreateOrder();
+
+        Assert.IsFalse(order.IsPaid);
+    }
+
+    [TestMethod]
+    public void MarkAsPaid_OrderIsPaid()
+    {
+        var order = TestData.CreateOrder();
+
+        order.MarkAsPaid();
+
+        Assert.IsTrue(order.IsPaid);
+    }
 }

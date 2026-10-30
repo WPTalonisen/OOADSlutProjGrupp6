@@ -10,6 +10,6 @@ public class ConsoleOrderNotifier : IOrderObserver
 
     public void OnStatusChanged(Order order)
     {
-        _output.WriteLine($"Order #{order.Id} is now {order.State}");    
+        _output.WriteLine($"Order #{order.Id} is now {order.State.Name}");    
     }
 }
