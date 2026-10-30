@@ -1,0 +1,181 @@
+%%{init: {"theme": "dark", "themeVariables": {"background": "#000000", "primaryColor": "#111111", "primaryTextColor": "#e0e0e0", "primaryBorderColor": "#555555", "lineColor": "#9a9a9a", "secondaryColor": "#1a1a1a", "tertiaryColor": "#0d0d0d"}}}%%
+classDiagram
+    direction LR
+
+    %% ===================== Restaurang =====================
+    class Restaurant {
+        +int Id
+        +string Name
+        +decimal MinimumOrderAmount
+        +string Description
+        -List~Dish~ _menu
+        +IReadOnlyList~Dish~ Menu
+        +AddDish(Dish dish) void
+        +MeetsMinimumOrder(decimal subtotal) bool
+    }
+    class Dish {
+        +int Id
+        +string Name
+        +decimal Price
+        +string Description
+    }
+    class RestaurantManager {
+        -Dictionary~int, Restaurant~ _restaurants
+        +IReadOnlyList~Restaurant~ Restaurants
+        +AddRestaurant(Restaurant restaurant) void
+        +GetById(int id) Restaurant?
+    }
+
+    %% ===================== Order =====================
+    class Order {
+        +int Id
+        +Restaurant Restaurant
+        +IReadOnlyList~OrderItem~ Items
+        +decimal Subtotal
+        +decimal DeliveryFee
+        +decimal TotalPrice
+        +bool IsPaid
+        +IOrderState State
+        -List~IOrderObserver~ _observers
+        +AddItem(Dish dish, int quantity) void
+        +SetPrice(decimal deliveryFee, decimal totalPrice) void
+        +MarkAsPaid() void
+        +AdvanceStatus() void
+        +Cancel() void
+        +Subscribe(IOrderObserver observer) void
+        +Unsubscribe(IOrderObserver observer) void
+        -NotifyObservers() void
+    }
+    class OrderItem {
+        +Dish Dish
+        +int Quantity
+        +decimal UnitPrice
+        +decimal Subtotal
+    }
+    class OrderFactory {
+        <<Factory>>
+        -int _nextId
+        +CreateOrder(Restaurant restaurant) Order
+    }
+    class OrderService {
+        <<Controller>>
+        -List~Order~ _orderHistory
+        +IReadOnlyList~Order~ OrderHistory
+        +PlaceOrder(Order order, Restaurant restaurant) bool
+        +GetOrderById(int id) Order?
+    }
+
+    %% ===================== State =====================
+    class IOrderState {
+        <<interface>>
+        +string Name
+        +Next() IOrderState
+        +Cancel() IOrderState
+    }
+    class ReceivedState
+    class PreparingState
+    class OutForDeliveryState
+    class DeliveredState
+    class CancelledState
+
+    %% ===================== Observer =====================
+    class IOrderObserver {
+        <<interface>>
+        +OnStatusChanged(Order order) void
+    }
+    class ConsoleOrderNotifier {
+        -TextWriter _output
+        +OnStatusChanged(Order order) void
+    }
+
+    %% ===================== Strategy =====================
+    class IDiscountStrategy {
+        <<interface>>
+        +CalculateDiscount(decimal subtotal) decimal
+    }
+    class PercentageDiscount {
+        +decimal Percent
+        +CalculateDiscount(decimal subtotal) decimal
+    }
+    class FixedAmountDiscount {
+        +decimal Amount
+        +CalculateDiscount(decimal subtotal) decimal
+    }
+    class PriceCalculator {
+        +decimal DeliveryFee
+        +CalculateTotal(Order order, IDiscountStrategy discount) decimal
+    }
+
+    %% ===================== Delivery =====================
+    class DeliveryManager {
+        -Queue~DeliveryPerson~ _availableDeliveryPersons
+        -Queue~Order~ _waitingOrders
+        +int AvailableCount
+        +int WaitingCount
+        +AddDeliveryPerson(DeliveryPerson deliveryPerson) void
+        +AssignOrder(Order order) DeliveryPerson?
+        +CompleteDelivery(DeliveryPerson deliveryPerson) void
+    }
+    class DeliveryPerson {
+        +int Id
+        +string Name
+        +DeliveryStatus Status
+        +Order? CurrentOrder
+        +AssignOrder(Order order) void
+        +CompleteDelivery() void
+    }
+    class DeliveryStatus {
+        <<enumeration>>
+        Available
+        Busy
+    }
+
+    %% ===================== Console =====================
+    class OrderMenu {
+        +CreateOrder() void
+        +DeliverOrder() void
+        +CancelOrder() void
+        +ShowHistory() void
+        -SimulateWait(string message)$ void
+    }
+    class ConsoleInput {
+        <<static>>
+        +ReadInt(string prompt)$ int
+    }
+
+    %% ===================== Relationer =====================
+    RestaurantManager "1" o-- "0..*" Restaurant
+    Restaurant "1" o-- "0..*" Dish : Menu
+    Order "1" *-- "0..*" OrderItem : Items
+    OrderItem "0..*" --> "1" Dish
+    Order "0..*" --> "1" Restaurant
+    Order --> IOrderState : State
+    Order o-- IOrderObserver : observers
+    OrderFactory ..> Order : skapar
+    OrderService "1" o-- "0..*" Order : historik
+
+    IOrderState <|.. ReceivedState
+    IOrderState <|.. PreparingState
+    IOrderState <|.. OutForDeliveryState
+    IOrderState <|.. DeliveredState
+    IOrderState <|.. CancelledState
+
+    IOrderObserver <|.. ConsoleOrderNotifier
+
+    IDiscountStrategy <|.. PercentageDiscount
+    IDiscountStrategy <|.. FixedAmountDiscount
+    PriceCalculator ..> IDiscountStrategy
+    PriceCalculator ..> Order
+
+    DeliveryManager "1" o-- "0..*" DeliveryPerson : lediga (kö)
+    DeliveryManager "1" o-- "0..*" Order : väntande (kö)
+    DeliveryPerson --> DeliveryStatus
+    DeliveryPerson "0..1" --> "0..1" Order : CurrentOrder
+
+    OrderMenu --> RestaurantManager
+    OrderMenu --> OrderFactory
+    OrderMenu --> OrderService
+    OrderMenu --> PriceCalculator
+    OrderMenu --> DeliveryManager
+    OrderMenu --> IOrderObserver
+    OrderMenu ..> ConsoleInput
