@@ -1,7 +1,7 @@
 namespace OOADSlutprojMEDTDD
 {
     [TestClass]
-    public sealed class OrderItemTests
+    public sealed class OrderItemTest
     {
         [TestMethod]
         public void Subtotal_ReturnsPriceTimesQuantity()

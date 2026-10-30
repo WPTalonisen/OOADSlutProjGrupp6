@@ -6,7 +6,7 @@ namespace OOADSlutprojMEDTDD;
 public class OrderStateTest
 {
     
-    // Checks if order.State is an object of the class RecievedState
+    // Checks if order.State is an object of the class ReceivedState
     [TestMethod]
     public void NewOrder_StateIsReceived()
     {

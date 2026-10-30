@@ -1,7 +1,7 @@
 namespace OOADSlutprojMEDTDD;
 
 [TestClass]
-public sealed class dishTest
+public sealed class DishTest
 {
 
     [TestMethod]

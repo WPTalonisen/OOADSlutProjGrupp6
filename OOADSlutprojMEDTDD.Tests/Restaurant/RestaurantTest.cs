@@ -1,7 +1,7 @@
 namespace OOADSlutprojMEDTDD;
 
 [TestClass]
-public sealed class RestaurangTest
+public sealed class RestaurantTest
 {
     [TestMethod]
     public void Constructor_SetRestaurantId()
