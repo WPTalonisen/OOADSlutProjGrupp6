@@ -16,8 +16,8 @@ public class OrderMenu
         _orderFactory = orderFactory;
         _orderService = orderService;
         _priceCalculator = priceCalculator;
-        _deliveryManager  = deliveryManager;
-        _notifier  = notifier;
+        _deliveryManager = deliveryManager;
+        _notifier = notifier;
     }
 
     
@@ -44,7 +44,7 @@ public class OrderMenu
             Console.WriteLine();
             for (int i = 0; i < restaurant.Menu.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {restaurant.Menu[i].Name} -  {restaurant.Menu[i].Price} kr");
+                Console.WriteLine($"{i + 1}. {restaurant.Menu[i].Name} - {restaurant.Menu[i].Price} kr");
             }
 
             Console.WriteLine($"Subtotal so far: {order.Subtotal} kr");
@@ -84,7 +84,7 @@ public class OrderMenu
         Console.WriteLine("Discount Selection");
         Console.WriteLine("1. No discount.");
         Console.WriteLine("2. 10% discount.");
-        Console.WriteLine("3. 50kr  Amount");
+        Console.WriteLine("3. 50kr discount.");
         IDiscountStrategy discount = ConsoleInput.ReadInt("Choose discount: ") switch
         {
             2 => new PercentageDiscount(10m),

@@ -27,7 +27,7 @@ public static class Program
         deliveryManager.AddDeliveryPerson(new DeliveryPerson(1, "William"));
         deliveryManager.AddDeliveryPerson(new DeliveryPerson(2, "Noel"));
         deliveryManager.AddDeliveryPerson(new DeliveryPerson(3, "Max"));
-        deliveryManager.AddDeliveryPerson(new DeliveryPerson(4, "Pär")); // Put the fries in the bag lil bro
+        deliveryManager.AddDeliveryPerson(new DeliveryPerson(4, "Pär"));
         
         var orderFactory = new OrderFactory();
         var orderService = new OrderService();
@@ -40,7 +40,7 @@ public static class Program
         while (running)
         {
             Console.WriteLine();
-            Console.WriteLine("=== NAME HERE ===");
+            Console.WriteLine("=== SUPER DUPER EATS ===");
             Console.WriteLine("Est. 2026");
             Console.WriteLine("1. New Order");
             Console.WriteLine("2. Show Order History");
@@ -48,11 +48,9 @@ public static class Program
             Console.WriteLine("4. Cancel Order");
             Console.WriteLine("0. Exit");
             
-            
-            
-            int user_choice = ReadInt("Enter choice: ");
+            int userChoice = ConsoleInput.ReadInt("Enter choice: ");
 
-            switch (user_choice)
+            switch (userChoice)
             {
                 case 1:
                     orderMenu.CreateOrder();
@@ -73,27 +71,6 @@ public static class Program
                     Console.WriteLine("Invalid choice, please try again.");
                     break;
             }
-        }
-    }
-
-    static int ReadInt(string prompt)
-    {
-        while (true)
-        {
-            Console.WriteLine(prompt);
-            string? input = Console.ReadLine();
-
-            if (input == null)
-            {
-                return 0;
-            }
-
-            if (int.TryParse(input, out int number))
-            {
-                return number;
-            }
-
-            Console.WriteLine("Write a number");
         }
     }
 }

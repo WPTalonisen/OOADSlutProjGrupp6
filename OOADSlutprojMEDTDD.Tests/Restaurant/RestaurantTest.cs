@@ -21,8 +21,8 @@ public sealed class RestaurantTest
     [TestMethod]
     public void Constructor_SetDescription()
     {
-        var restaurant = new Restaurant(1, description: "Sug min kuk javenne"); 
-        Assert.AreEqual("Sug min kuk javenne", restaurant.Description);
+        var restaurant = new Restaurant(1, description: "Random Pizza"); 
+        Assert.AreEqual("Random Pizza", restaurant.Description);
     }
     
     [TestMethod] 
@@ -53,7 +53,7 @@ public sealed class RestaurantTest
         
         // Skapa en restaurang och en maträtt
         var restaurant = new Restaurant(4, "Talonisens Spotify och Nattklub");
-        var dish = new Dish(4, "Kattspya med bajs");
+        var dish = new Dish(4, "Random Pizza");
         
         // Lägg till ny maträtt i restaurangens meny
         restaurant.AddDish(dish);

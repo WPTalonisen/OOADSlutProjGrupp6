@@ -48,5 +48,7 @@
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DeliveryPersonTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DiscountTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.OrderObserverTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.RestaurantTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;MSTest::181AB81B-1773-4A15-BECE-9C2B3DA98C98::net10.0::OOADSlutprojMEDTDD.DishTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

@@ -14,8 +14,8 @@ public sealed class DishTest
     [TestMethod]
     public void Constructor_SetDishName()
     {        
-        var dish = new Dish(1, "Kattspya med bajs"); 
-        Assert.AreEqual("Kattspya med bajs", dish.Name);
+        var dish = new Dish(1, "Random Pizza"); 
+        Assert.AreEqual("Random Pizza", dish.Name);
     }
     
     [TestMethod]
@@ -28,8 +28,8 @@ public sealed class DishTest
     [TestMethod]
     public void Constructor_SetDishDescription()
     {
-        var dish = new Dish(1, description: "Creamy and moist, ribbed for his pleasure");
-        Assert.AreEqual("Creamy and moist, ribbed for his pleasure", dish.Description);
+        var dish = new Dish(1, description: "Random Pizza");
+        Assert.AreEqual("Random Pizza", dish.Description);
     }
 
     
@@ -39,7 +39,7 @@ public sealed class DishTest
         int expectedId = 60;
         string expectedName = "Notgården Special";
         decimal expectedPrice = 10m;
-        string expectedDescription = "Koskit med mangoraja";
+        string expectedDescription = "Random Pizza";
         
         
         var dish = new Dish(expectedId, expectedName, expectedPrice, expectedDescription);
