@@ -1,128 +1,111 @@
-# Super Duper Eats – ordersystem för matleverans
+# OOADSlutProjGrupp6
 
-Slutprojekt i **Objektorienterad design och problemlösning (OOAD), HT26 – Grupp 6**
-Val 7: *Matleveranstjänstens ordersystem*
+Slutprojekt i OOAD HT26, grupp 6 (William, Max, Noel och Pär).
 
-Ett konsolprogram i C# där en kund väljer restaurang, lägger rätter i en order, väljer rabatt, betalar och följer ordern hela vägen till leverans. Projektet är byggt med **TDD** (testdriven utveckling) och använder flera designmönster från kursen.
+Vi valde Val 7, ordersystem för en matleveranstjänst. Vår tjänst heter Super Duper Eats. Det är ett konsolprogram i C# där man väljer restaurang, lägger till rätter, väljer rabatt, betalar och sen kan leverera eller avboka ordern. Allt är gjort med TDD.
 
-**Grupp 6:** William, Max, Noel och Pär
+## Köra programmet
 
----
+Man behöver .NET 10.
 
-## Kom igång
-
-**Krav:** [.NET 10 SDK](https://dotnet.microsoft.com/download)
-
-```bash
-# Kör programmet
+```
 dotnet run --project OOADSlutprojMEDTDD
+```
 
-# Kör alla tester
+Testerna körs med:
+
+```
 dotnet test
 ```
 
-I Rider eller Visual Studio: öppna `OOADSlutprojMEDTDD.sln`, kör projektet `OOADSlutprojMEDTDD` och kör testerna i `OOADSlutprojMEDTDD.Tests`.
+Eller öppna `OOADSlutprojMEDTDD.sln` i Rider/Visual Studio.
 
----
+## Vad programmet kan
 
-## Funktioner
+Huvudmenyn har fyra val:
 
-| Menyval | Vad det gör |
-|---|---|
-| **1. New Order** | Välj restaurang → välj rätter och antal → kassa → välj rabatt → betala eller avbryt |
-| **2. Show Order History** | Visar alla ordrar med rätter, delsumma, leveransavgift och total / återbetalning |
-| **3. Deliver Order** | Skickar ordern med ett ledigt bud och levererar den |
-| **4. Cancel Order** | Avbokar en order – om dess nuvarande status tillåter det |
+1. New Order - välj restaurang och rätter, gå till kassan, välj rabatt och betala (eller avbryt)
+2. Show Order History - visar alla ordrar med rätter, delsumma, leveransavgift och totalpris. Avbokade ordrar som var betalda visas som återbetalda
+3. Deliver Order - ordern får ett bud och levereras
+4. Cancel Order - avbokar en order om det går
 
-- Restaurangerna har en **minsta ordersumma** – ordrar under den nekas.
-- Leveransavgiften är **50 kr**.
-- Rabatter: ingen, **10 %** eller **50 kr** (en fast rabatt kan aldrig bli större än delsumman).
-- Varje steg simulerar en väntetid på 5–10 sekunder.
-- Statusändringar skrivs ut automatiskt, t.ex. `Order #1 is now Preparing`.
+Lite regler vi har:
 
-### En orders livscykel
+- Varje restaurang har en minsta ordersumma, är ordern under den så nekas den
+- Leveransavgiften är 50 kr
+- Rabatterna är ingen rabatt, 10% eller 50 kr. 50 kr-rabatten kan inte bli mer än vad maten kostar
+- Det är en väntetid på 5-10 sek mellan stegen så det känns lite mer som en riktig beställning
+- När en order byter status skrivs det ut, t.ex. "Order #1 is now Preparing"
 
-```
-Received ──► Preparing ──► Out for delivery ──► Delivered
-    │            │
-    └────────────┴──► Cancelled
-```
+En order går Received -> Preparing -> Out for delivery -> Delivered. Man kan bara avboka när den är Received eller Preparing, när budet väl har åkt går det inte längre.
 
-En order kan bara avbokas medan den är **Received** eller **Preparing**. När den är ute för leverans går den inte att avboka.
+## Mappar
 
----
-
-## Projektstruktur
-
-```
-OOADSlutprojMEDTDD/            Programmet
-├── Calculator/                PriceCalculator
-├── Delivery/                  DeliveryManager, DeliveryPerson, DeliveryStatus
-├── Discount/                  IDiscountStrategy, PercentageDiscount, FixedAmountDiscount
-├── Order/                     Order, OrderItem, OrderFactory, OrderService, IOrderObserver, ConsoleOrderNotifier
-├── OrderStates/               IOrderState + Received, Preparing, OutForDelivery, Delivered, Cancelled
-├── Restaurant/                Restaurant, Dish, RestaurantManager
-└── UI/                        Program, OrderMenu, ConsoleInput
-
-OOADSlutprojMEDTDD.Tests/      Enhetstester (MSTest), samma mappindelning
-docs/uml/                      UML-klassdiagram
-```
-
----
+- `OOADSlutprojMEDTDD` - själva programmet
+  - `Calculator` - PriceCalculator
+  - `Delivery` - DeliveryManager, DeliveryPerson, DeliveryStatus
+  - `Discount` - rabatterna
+  - `Order` - Order, OrderItem, OrderFactory, OrderService och observer-grejerna
+  - `OrderStates` - alla statusar
+  - `Restaurant` - Restaurant, Dish, RestaurantManager
+  - `UI` - Program, OrderMenu, ConsoleInput
+- `OOADSlutprojMEDTDD.Tests` - testerna, uppdelade i samma mappar
+- `docs/uml` - UML-diagrammen
 
 ## Designmönster
 
-| Mönster | Var | Varför |
-|---|---|---|
-| **Strategy** | `IDiscountStrategy` → `PercentageDiscount`, `FixedAmountDiscount` | Nya rabatttyper kan läggas till utan att ändra `PriceCalculator` |
-| **State** | `IOrderState` → fem statusklasser | Varje status bestämmer själv vilken nästa status är och om avbokning är tillåten – inga långa `if`/`switch`-kedjor |
-| **Observer** | `IOrderObserver` → `ConsoleOrderNotifier` | `Order` meddelar prenumeranter vid statusändring utan att veta vem de är |
-| **Simple Factory** | `OrderFactory` | Skapar ordrar och delar ut unika ID:n på ett ställe |
+**Strategy** - rabatterna. `IDiscountStrategy` har två implementationer, `PercentageDiscount` och `FixedAmountDiscount`. PriceCalculator bryr sig inte om vilken rabatt det är, så vill man lägga till en ny rabatt gör man bara en ny klass.
+
+**State** - orderns status. Varje status är en egen klass som vet vad nästa status är och om man får avboka. Då slipper vi en massa if-satser i Order.
+
+**Observer** - när ordern ändrar status meddelas alla som prenumererar (`IOrderObserver`). I programmet är det `ConsoleOrderNotifier` som skriver ut i konsolen. I testerna använder vi en `FakeOrderObserver` istället.
+
+**Factory** - `OrderFactory` skapar ordrar och ger dem ett unikt ID.
 
 ## SOLID och GRASP
 
-- **SRP** – varje klass har ett ansvar: `PriceCalculator` räknar pris, `OrderService` håller orderhistorik, `OrderMenu` hanterar menyn.
-- **OCP** – nya rabatter och statusar läggs till som nya klasser, befintlig kod ändras inte.
-- **LSP** – alla `IDiscountStrategy` och `IOrderState` kan användas utbytbart.
-- **DIP** – `ConsoleOrderNotifier` tar emot en `TextWriter` i stället för att skriva direkt till `Console`, så den kan testas med `StringWriter`.
-- **Information Expert** – `Order` räknar ut sin egen `Subtotal`, `Restaurant` avgör själv `MeetsMinimumOrder`.
-- **Creator** – `Order` skapar sina `OrderItem`.
-- **Controller** – `OrderService` tar emot och validerar ordrar.
-- **Pure Fabrication** – `PriceCalculator` finns inte i verkligheten men samlar prislogiken på ett ställe.
+Vi har försökt tänka på:
 
-## Datastrukturer och algoritmer
+- SRP: varje klass gör en sak, t.ex. räknar PriceCalculator bara pris och OrderService håller koll på ordrarna
+- OCP: nya rabatter och statusar blir nya klasser, man behöver inte ändra den gamla koden
+- LSP: alla rabatter och alla statusar går att byta ut mot varandra
+- DIP: ConsoleOrderNotifier tar en TextWriter istället för att skriva direkt till Console, så vi kan testa den med en StringWriter
+- Information Expert: Order räknar ut sin egen delsumma och Restaurant kollar själv om minsta summan är uppnådd
+- Creator: Order skapar sina OrderItems
+- Controller: OrderService tar emot ordrarna
+- Pure Fabrication: PriceCalculator
 
-| Struktur | Var | Varför |
-|---|---|---|
-| `Dictionary<int, Restaurant>` | `RestaurantManager` | Snabb uppslagning på ID – O(1) |
-| `Queue<DeliveryPerson>` / `Queue<Order>` | `DeliveryManager` | Rättvis FIFO-tilldelning – först ledigt bud får nästa order, ordrar utan bud väntar i kö |
-| `List<Order>` | `OrderService` | Orderhistorik i den ordning ordrarna lades |
+## Datastrukturer
 
-- **Summering** av orderns rader – O(n)
-- **Linjär sökning** i `GetOrderById` – O(n)
+- `Dictionary` i RestaurantManager så man kan hämta en restaurang direkt på ID
+- Två `Queue` i DeliveryManager, en för lediga bud och en för ordrar som väntar. Först in först ut, så det första lediga budet tar nästa order
+- `List` för orderhistoriken
 
----
+GetOrderById är en linjär sökning (O(n)) och delsumman räknas med en loop över raderna (O(n)).
 
-## Testdriven utveckling
+## TDD
 
-All logik är utvecklad enligt **röd → grön → refaktorera**: först ett test som misslyckas, sedan minsta möjliga kod för att få det grönt, sedan städning.
-
-- Ramverk: **MSTest 4**
-- Varje test testar en sak (Arrange – Act – Assert)
-- `[DataRow]` för att testa flera värden med samma test
-- `FakeOrderObserver` är en test double som registrerar notiser, så Observer-mönstret kan testas utan konsolen
-- `TestData` samlar gemensam testdata
-
----
+Vi har skrivit testet först, sett det bli rött, skrivit kod tills det blev grönt och sen städat. Vi använder MSTest och försöker ha en sak per test. Några tester kör flera värden med `[DataRow]`. `TestData` har en hjälpmetod som skapar en order så vi slipper skriva samma sak i varje test.
 
 ## UML
 
-Klassdiagrammen finns i [`docs/uml/`](docs/uml/):
+Diagrammen ligger i `docs/uml`. Vi delade upp det i fem för att det blev för plottrigt i ett:
 
-| Diagram | Innehåll |
-|---|---|
-| [Översikt](docs/uml/uml-1-oversikt.png) | Hela systemet på hög nivå |
-| [Restaurang & Order](docs/uml/uml-2-restaurang-order.png) | Restaurant, Dish, Order, OrderItem |
-| [Strategy](docs/uml/uml-3-strategy.png) | Rabatter och PriceCalculator |
-| [State & Observer](docs/uml/uml-4-state-observer.png) | Orderstatus och notiser |
-| [Leverans](docs/uml/uml-5-leverans.png) | DeliveryManager och bud |
+- [Översikt](docs/uml/uml-1-oversikt.png)
+- [Restaurang och order](docs/uml/uml-2-restaurang-order.png)
+- [Strategy](docs/uml/uml-3-strategy.png)
+- [State och observer](docs/uml/uml-4-state-observer.png)
+- [Leverans](docs/uml/uml-5-leverans.png)
+
+## Användning av AI
+
+Vi har använt Claude (en AI-assistent från Anthropic) som hjälp under hela projektet. Vi har använt den till att:
+
+- förklara kod och begrepp, t.ex. designmönster, SOLID och hur MSTest fungerar
+- hitta och förklara fel när koden inte kompilerade eller testerna var röda
+- ge stommar och kodexempel som vi sen har skrivit in och anpassat själva
+- göra UML-diagrammen utifrån vår kod
+- hjälpa till att städa upp koden, mappstrukturen och repot
+- skriva den här README:n
+
+Alla beslut om hur programmet ska fungera har vi tagit själva, och vi har gått igenom och testat koden så att vi förstår den.
