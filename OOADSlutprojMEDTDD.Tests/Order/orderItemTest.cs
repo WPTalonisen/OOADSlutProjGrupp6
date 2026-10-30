@@ -16,11 +16,5 @@ namespace OOADSlutprojMEDTDD
             // Subtotal should be 30
             Assert.AreEqual(30, subtotal);
         }
-
-        [TestMethod]
-        public void Subtotal_EqualToOrGreaterThanMinimumPrice()
-        {
-            
-        }
     }
 }
