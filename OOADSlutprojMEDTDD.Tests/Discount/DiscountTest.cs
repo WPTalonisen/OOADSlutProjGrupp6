@@ -65,5 +65,4 @@ public sealed class DiscountTest
     {
         Assert.ThrowsExactly<ArgumentException>(() => new PercentageDiscount(150m));
     }
-    
 }
