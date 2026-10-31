@@ -5,7 +5,6 @@ public static class Program
     public static void Main()
     {
         
-        // Hardcoded setup, move later to own .txt file
         var restaurantManager = new RestaurantManager();
 
         var pizzeriaTalonisen = new Restaurant(1, "Pizzeria Talonisen", 100m);
@@ -22,6 +21,18 @@ public static class Program
         maxSundburger.AddDish(new Dish(3, "Glass", 30m));
         maxSundburger.AddDish(new Dish(4, "Strips", 40m));
         restaurantManager.AddRestaurant(maxSundburger);
+        
+        var noelHolsushi = new Restaurant(3, "Noel Holsushi", 100m);
+        noelHolsushi.AddDish(new Dish(1, "Fried Rice", 59m));
+        noelHolsushi.AddDish(new Dish(2, "California Roll 1 bit", 69m));
+        noelHolsushi.AddDish(new Dish(3, "Avocado Roll 2 bitar", 89m));
+        noelHolsushi.AddDish(new Dish(4, "Salmon Rolls 5 bitar", 150m));
+        noelHolsushi.AddDish(new Dish(5, "Friterad Kyckling m. Ris och Jordnötsås", 200m));
+        noelHolsushi.AddDish(new Dish(6, "Wagyu Stek 50g", 4000m));
+        noelHolsushi.AddDish(new Dish(7, "Surströmming Nigiri 5 bitar (Röda Ulven)", 40m));
+        noelHolsushi.AddDish(new Dish(8, "Döner Kebab m. Pommes", 89m));
+        noelHolsushi.AddDish(new Dish(9, "Kolsyrad Dryck med Sojasmak", 15m));
+        restaurantManager.AddRestaurant(noelHolsushi);
         
         var deliveryManager = new DeliveryManager();
         deliveryManager.AddDeliveryPerson(new DeliveryPerson(1, "William"));
