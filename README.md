@@ -1,6 +1,6 @@
 # OOADSlutProjGrupp6
 
-Slutprojekt i OOAD HT26, grupp 6 (William, Max, Noel och Pär).
+Slutprojekt i OOAD HT26, grupp 6 (William, Max och Noel).
 
 Vi valde Val 7, ordersystem för en matleveranstjänst. Vår tjänst heter Super Duper Eats. Det är ett konsolprogram i C# där man väljer restaurang, lägger till rätter, väljer rabatt, betalar och sen kan leverera eller avboka ordern. Allt är gjort med TDD.
 
