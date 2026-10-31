@@ -51,6 +51,7 @@ En order går Received -> Preparing -> Out for delivery -> Delivered. Man kan ba
   - `UI` - Program, OrderMenu, ConsoleInput
 - `OOADSlutprojMEDTDD.Tests` - testerna, uppdelade i samma mappar
 - `docs/uml` - UML-diagrammen
+- `docs/krav.md` - kravlista, user stories, use cases och bortval
 
 ## Designmönster
 
