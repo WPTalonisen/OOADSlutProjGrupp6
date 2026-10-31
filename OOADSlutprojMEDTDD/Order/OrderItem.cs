@@ -2,7 +2,7 @@ namespace OOADSlutprojMEDTDD;
 
 public class OrderItem
 {
-    // What the dish the row concerns
+    // The dish this row is for
     public Dish Dish { get; }
     
     // The amount of the dish 

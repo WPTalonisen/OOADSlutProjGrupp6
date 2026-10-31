@@ -47,7 +47,7 @@ public sealed class DiscountTest
         
     }
 
-    // Checks if discount is valid, % is not > 0, 0< or negative
+    // Checks that percentages below 0 or above 100 throw
     [TestMethod]
     public void FixedAmountDiscount_NegativeAmount_ThrowsArgumentException()
     {

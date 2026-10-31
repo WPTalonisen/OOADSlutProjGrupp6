@@ -2,11 +2,11 @@ namespace OOADSlutprojMEDTDD;
 
 public class DeliveryPerson
 {
-    // Budets namn och ID
+    // Delivery person name and ID
     public int Id { get; }
     public string Name { get; }
 
-    // Status och nuvarande order, order kan vara Null.
+    // Status and current order, order can be null
     public DeliveryStatus Status { get; private set; }
     public Order? CurrentOrder { get; private set; }
 
@@ -17,14 +17,14 @@ public class DeliveryPerson
         Status = DeliveryStatus.Available;
     }
 
-    // Bud tar emot en order och blir busy 
+    // Takes an order and becomes busy 
     public void AssignOrder(Order order)
     {
         CurrentOrder = order;
         Status = DeliveryStatus.Busy;
     }
     
-    // Budet har levererat och blir available igen
+    // Delivery done, becomes available again
     public void CompleteDelivery()
     {    
         Status = DeliveryStatus.Available;

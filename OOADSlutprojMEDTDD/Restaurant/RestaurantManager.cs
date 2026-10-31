@@ -2,7 +2,7 @@ namespace OOADSlutprojMEDTDD;
 
 public class RestaurantManager
 {
-    // Lista med alla restauranger
+    // All restaurants, stored by ID
     private Dictionary<int, Restaurant> _restaurants = new Dictionary<int, Restaurant>();
     
     public IReadOnlyList<Restaurant> Restaurants => _restaurants.Values.ToList();
@@ -12,7 +12,7 @@ public class RestaurantManager
         _restaurants.Add(restaurant.Id, restaurant);
     }
 
-    // Gets restaurand by Id, checks if key is in list and returns, else returns null
+    // Gets restaurant by Id, checks if key is in list and returns, else returns null
     public Restaurant? GetById(int id)
     {
         if (_restaurants.ContainsKey(id))

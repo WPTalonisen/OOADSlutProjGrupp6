@@ -156,7 +156,6 @@ public sealed class DeliveryManagerTest
     // -- Delivery Completed, one order waiting
     
     
-    // -- Går igenom stegvist test, 
     [TestMethod]
     public void CompletedDelivery_OrderWaiting_DeliveryPersonGetsWaitingOrderAndQueueIsEmpty()
     {

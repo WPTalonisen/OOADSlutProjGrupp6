@@ -1,10 +1,10 @@
-//Rabatter sker i annan fil, restaurang ska inte veta att det finns rabatter och bara jämföra beställningspris med minimipris
+// Discounts are handled elsewhere. Restaurant only compares the order price with its minimum amount
 
 namespace OOADSlutprojMEDTDD;
 
 public class Restaurant
 {
-    // Property: restaurangens namn
+    // Property: restaurant name
     public string Name { get; }
     
     // Property: restaurant ID
@@ -16,10 +16,10 @@ public class Restaurant
     // Property: restaurant description
     public string Description { get; }
     
-    // Privat lista med maträtter
+    // Private list of dishes
     private List<Dish> _menu = new List<Dish>();
         
-    // Publik meny, andra får se men inte röra
+    // Public menu, others can read but not change it
     public IReadOnlyList<Dish> Menu => _menu;
 
     public void AddDish(Dish dish)
@@ -33,7 +33,7 @@ public class Restaurant
     }
     
 
-    // Konstruktor: körs när någon skriver new Restaurant(...)
+    // Constructor: runs when someone writes new Restaurant(...)
     public Restaurant( int id, string name = "", decimal minimumOrderAmount = 0m, string description = "")
     {
         Id = id;

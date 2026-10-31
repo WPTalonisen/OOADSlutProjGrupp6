@@ -1,9 +1,9 @@
 namespace OOADSlutprojMEDTDD;
 
-// Hjälpmetoder som skapar färdig testdata åt alla tester
+// Helper methods that create ready-made test data
 public static class TestData
 {
-    // En order med standardvärden, för tester som inte bryr sig om ID eller restaurang
+    // An order with default values, for tests that don't care about ID or restaurant
     public static Order CreateOrder()
     {
         return new Order(1, new Restaurant(1, "Test Restaurant"));

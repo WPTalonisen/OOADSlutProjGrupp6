@@ -6,10 +6,10 @@ public class Dish
     // Property: dish ID
     public int Id {get; }
     
-    // Property: maträttens namn
+    // Property: dish name
     public string Name { get; }
     
-    // Property: maträttens pris
+    // Property: dish price
     public decimal Price { get; }
     
     // Property: Dish description
@@ -17,7 +17,7 @@ public class Dish
     
     
 
-    // Konstruktor: körs när någon skriver new Dish(...)
+    // Constructor: runs when someone writes new Dish(...)
     public Dish(int id, string name = "",  decimal price = 0m, string description = "")
     {
         Id = id;

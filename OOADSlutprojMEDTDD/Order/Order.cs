@@ -37,7 +37,7 @@ public class Order
     // Public list others can see but not change
     public IReadOnlyList<OrderItem> Items => _items;
 
-    // Creates an OrderRow of Dish + quantity and adds to the list
+    // Creates an OrderItem of Dish + quantity and adds to the list
     public void AddItem(Dish dish, int quantity)
     {
         var item = new OrderItem(dish, quantity);

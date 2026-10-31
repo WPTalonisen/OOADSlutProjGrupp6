@@ -51,14 +51,14 @@ public sealed class RestaurantTest
     {
 
         
-        // Skapa en restaurang och en maträtt
+        // Create a restaurant and a dish
         var restaurant = new Restaurant(4, "Talonisens Spotify och Nattklub");
         var dish = new Dish(4, "Random Pizza");
         
-        // Lägg till ny maträtt i restaurangens meny
+        // Add the dish to the menu
         restaurant.AddDish(dish);
         
-        // Finns rätten i menyn?
+        // Is the dish in the menu?
         Assert.Contains(dish, restaurant.Menu);
 
     }
