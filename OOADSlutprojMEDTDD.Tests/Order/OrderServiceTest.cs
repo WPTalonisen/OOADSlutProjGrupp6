@@ -58,4 +58,30 @@ public class OrderServiceTest
         
         Assert.AreEqual(0, service.OrderHistory.Count);
     }
+    
+    // Finds an order in the history by its ID
+    [TestMethod]
+    public void GetOrderById_ExistingId_ReturnsThatOrder()
+    {
+        var service = new OrderService();
+        var restaurant = new Restaurant(1, "Pizzeria Talonisen");
+        var order = new Order(5, restaurant);
+        service.PlaceOrder(order, restaurant);
+
+        Order? found = service.GetOrderById(5);
+
+        Assert.AreSame(order, found);
+    }
+
+    [TestMethod]
+    public void GetOrderById_UnknownId_ReturnsNull()
+    {
+        var service = new OrderService();
+        var restaurant = new Restaurant(1, "Pizzeria Talonisen");
+        service.PlaceOrder(new Order(5, restaurant), restaurant);
+
+        Order? found = service.GetOrderById(99);
+
+        Assert.IsNull(found);
+    }
 }
