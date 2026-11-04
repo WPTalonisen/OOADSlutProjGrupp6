@@ -58,6 +58,7 @@ public class Order
         }
     }
 
+    // STATE
     public IOrderState State { get; private set; } = new ReceivedState();
 
     public void AdvanceStatus()
@@ -65,8 +66,6 @@ public class Order
         State = State.Next();
         NotifyObservers();
     }
-
-
 
     public void Cancel()
     {
